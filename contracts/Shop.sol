@@ -8,16 +8,21 @@ contract Shop is Owned, IShop {
 
   struct Product {
     uint256 stock;
-    uint256 priceInEth;
-    address tokenAddress;
-    uint256 priceInTokens;
+    uint256 priceInWei;
+    mapping(address => uint256) priceInTokens;
   }
 
   mapping(address => bool) admins;
-  mapping (uint256 => Product) public products;
+  //mapping (uint256 => Product) public products;
+  Product[] products;
 
   modifier onlyAdmin {
     require(admins[msg.sender]);
+    _;
+  }
+
+  modifier onlyOwnerAndAdmin {
+    require(msg.sender == owner || admins[msg.sender]);
     _;
   }
 
@@ -35,47 +40,48 @@ contract Shop is Owned, IShop {
   }
 
   // Only Owner or Admin can add product
-  function addProduct(uint256 _id, uint256 _price, uint256 _stock) onlyOwner onlyAdmin public returns (bool) {
-    require(_id > 0);
+  function addProduct(uint256 _price, uint256 _stock) onlyOwnerAndAdmin public returns (bool) {
     require(_price > 0);
     require(_stock > 0);
-    require(products[_id].priceInEth != 0);
+    uint256 id = products.length++;
 
-    setProductPrice(_id, _price);
-    setProductStock(_id, _stock);
+    Product storage p = products[id];
+    p.priceInWei = _price;
+    p.stock = _stock;
 
-    ProductAdded(_id, _price, _stock);
+    ProductAdded(id, _price, _stock);
     return true;
   }
   
-  function setProductPrice(uint256 _id, uint256 _price) onlyOwner onlyAdmin public {
-    products[_id].priceInEth = _price;
+  function setProductPrice(uint256 _id, uint256 _price) onlyOwnerAndAdmin public {
+    products[_id].priceInWei = _price;
   }
 
-  function setProductStock(uint256 _id, uint256 _stock) onlyOwner onlyAdmin public {
+  function setProductStock(uint256 _id, uint256 _stock) onlyOwnerAndAdmin public {
     products[_id].stock = _stock;
   }
   
-  function setProductTokenAddressAndPrice(uint256 _id, address _tokenAddress, uint256 _tokenPrice) onlyOwner onlyAdmin public {
-    products[_id].tokenAddress = _tokenAddress;
-    products[_id].priceInTokens = _tokenPrice;
+  function setProductTokenAddressAndPrice(uint256 _id, address _tokenAddress, uint256 _tokenPrice) onlyOwnerAndAdmin public {
+    products[_id].priceInTokens[_tokenAddress] = _tokenPrice;
   }
 
   // Only Owner or Admin can remove product
-  function removeProduct(uint256 _id) onlyOwner onlyAdmin public returns (bool) {
+  function removeProduct(uint256 _id) onlyOwnerAndAdmin public returns (bool) {
     require(_id > 0);
-    require(products[_id].priceInEth != 0);
-
-    setProductPrice(_id, 0);
-    setProductStock(_id, 0);
-    setProductTokenAddressAndPrice(_id, 0, 0);
+    require(products[_id].priceInWei != 0);
+		
+		for(uint256 j = _id; j < products.length-1; j++) {
+			products[j] = products[j + 1];
+		}
+    
+		products.length--;
     
     ProductRemoved(_id);
     return true;
   }
 
   // Only Owner or Admin can set token and its price
-  function setTokenPriceOfProduct(uint256 _id, address _tokenAddress, uint256 _priceInTokens) onlyOwner onlyAdmin public returns (bool) {
+  function setTokenPriceOfProduct(uint256 _id, address _tokenAddress, uint256 _priceInTokens) onlyOwnerAndAdmin public returns (bool) {
       require(_id > 0);
       require(_priceInTokens > 0);
       require(_tokenAddress != address(0));
@@ -87,9 +93,15 @@ contract Shop is Owned, IShop {
   }
 
   // Everyone can get the information for the product
-  function getProductInfo(uint256 id) view public returns (uint256, uint256, address, uint256) {
+  function getProductInfo(uint256 id) view public returns (uint256, uint256) {
       Product storage product = products[id];
-      return (product.priceInEth, product.stock, product.tokenAddress, product.priceInTokens);
+      return (product.priceInWei, product.stock);
+  }
+
+  function getProductTokenPrice(uint256 id, address tokenAddress) view public returns (uint256 tokenPrice) {
+    Product storage product = products[id];
+    tokenPrice = product.priceInTokens[tokenAddress];
+    return tokenPrice; 
   }
 
   // Only Owner can Withdraw from the contract

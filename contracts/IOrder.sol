@@ -6,11 +6,11 @@ contract IOrder {
       Confirmed
   }
   
-  event EthereumOrderPlaced(uint256 _productId, address _shopAddress, address _from, uint256 _priceInEth, OrderStatus _status);
+  event OrderPlaced(uint256 _productId, address _shopAddress, address _from, uint256 _price, OrderStatus _status);
+
+  event Withdraw(uint256 _productId, address _shopAddress, address _from);
   
-  function etherOrder(uint256 _productId, address _shopAddress) public payable returns (bool);
-  
-  function comfirmOrder(uint256 _productId, address _shopAddress) public returns (bool);
+  function comfirmOrder(uint256 _productId, address _shopAddress) public returns (bool success);
 
   function withdrawPayment(uint256 _productId, address _shopAddress) public returns (bool success);
 }

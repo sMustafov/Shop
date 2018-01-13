@@ -11,5 +11,7 @@ contract IShop {
 
   function buyProduct(uint256 id) payable public returns (bool);
   
-  function getProductInfo(uint id) view public returns (uint256 priceInEth, uint256 stock, address tokenAddress, uint256 priceInTokens);
+  function getProductInfo(uint id) view public returns (uint256 priceInWei, uint256 stock);
+
+  function getProductTokenPrice(uint256 id, address tokenAddress) view public returns (uint256 tokenPrice);
 }
