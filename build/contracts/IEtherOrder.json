@@ -1,0 +1,570 @@
+{
+  "contractName": "IEtherOrder",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_productId",
+          "type": "uint256"
+        },
+        {
+          "name": "_shopAddress",
+          "type": "address"
+        }
+      ],
+      "name": "etherOrder",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_productId",
+          "type": "uint256"
+        },
+        {
+          "name": "_shopAddress",
+          "type": "address"
+        }
+      ],
+      "name": "etherWithdrawPayment",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_productId",
+          "type": "uint256"
+        },
+        {
+          "name": "_shopAddress",
+          "type": "address"
+        }
+      ],
+      "name": "etherComfirmOrder",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_productId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "_shopAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_price",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "_status",
+          "type": "uint8"
+        }
+      ],
+      "name": "OrderPlaced",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_productId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "_shopAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_from",
+          "type": "address"
+        }
+      ],
+      "name": "Withdraw",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.16;\r\n\r\nimport \"./IOrder.sol\";\r\n\r\ncontract IEtherOrder is IOrder {\r\n\r\n  function etherOrder(uint256 _productId, address _shopAddress) public payable returns (bool);\r\n\r\n  function etherComfirmOrder(uint256 _productId, address _shopAddress) public returns (bool success);\r\n\r\n  function etherWithdrawPayment(uint256 _productId, address _shopAddress) public returns (bool success);\r\n}",
+  "sourcePath": "C:\\Users\\sevgi\\Desktop\\Shop\\contracts\\IEtherOrder.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/C/Users/sevgi/Desktop/Shop/contracts/IEtherOrder.sol",
+      "exportedSymbols": {
+        "IEtherOrder": [
+          298
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".16"
+          ]
+        },
+        "id": 267,
+        "name": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 325,
+          "absolutePath": "/C/Users/sevgi/Desktop/Shop/contracts/IOrder.sol",
+          "file": "./IOrder.sol",
+          "scope": 299,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 268,
+        "name": "ImportDirective",
+        "src": "28:22:1"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            324
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            298,
+            324
+          ],
+          "name": "IEtherOrder",
+          "scope": 299
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": [
+                null
+              ]
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "IOrder",
+                  "referencedDeclaration": 324,
+                  "type": "contract IOrder"
+                },
+                "id": 269,
+                "name": "UserDefinedTypeName",
+                "src": "78:6:1"
+              }
+            ],
+            "id": 270,
+            "name": "InheritanceSpecifier",
+            "src": "78:6:1"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "constant": false,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "etherOrder",
+              "payable": true,
+              "scope": 298,
+              "stateMutability": "payable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_productId",
+                      "scope": 279,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 271,
+                        "name": "ElementaryTypeName",
+                        "src": "112:7:1"
+                      }
+                    ],
+                    "id": 272,
+                    "name": "VariableDeclaration",
+                    "src": "112:18:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_shopAddress",
+                      "scope": 279,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 273,
+                        "name": "ElementaryTypeName",
+                        "src": "132:7:1"
+                      }
+                    ],
+                    "id": 274,
+                    "name": "VariableDeclaration",
+                    "src": "132:20:1"
+                  }
+                ],
+                "id": 275,
+                "name": "ParameterList",
+                "src": "111:42:1"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 279,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 276,
+                        "name": "ElementaryTypeName",
+                        "src": "178:4:1"
+                      }
+                    ],
+                    "id": 277,
+                    "name": "VariableDeclaration",
+                    "src": "178:4:1"
+                  }
+                ],
+                "id": 278,
+                "name": "ParameterList",
+                "src": "177:6:1"
+              }
+            ],
+            "id": 279,
+            "name": "FunctionDefinition",
+            "src": "92:92:1"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "constant": false,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "etherComfirmOrder",
+              "payable": false,
+              "scope": 298,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_productId",
+                      "scope": 288,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 280,
+                        "name": "ElementaryTypeName",
+                        "src": "217:7:1"
+                      }
+                    ],
+                    "id": 281,
+                    "name": "VariableDeclaration",
+                    "src": "217:18:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_shopAddress",
+                      "scope": 288,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 282,
+                        "name": "ElementaryTypeName",
+                        "src": "237:7:1"
+                      }
+                    ],
+                    "id": 283,
+                    "name": "VariableDeclaration",
+                    "src": "237:20:1"
+                  }
+                ],
+                "id": 284,
+                "name": "ParameterList",
+                "src": "216:42:1"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "success",
+                      "scope": 288,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 285,
+                        "name": "ElementaryTypeName",
+                        "src": "275:4:1"
+                      }
+                    ],
+                    "id": 286,
+                    "name": "VariableDeclaration",
+                    "src": "275:12:1"
+                  }
+                ],
+                "id": 287,
+                "name": "ParameterList",
+                "src": "274:14:1"
+              }
+            ],
+            "id": 288,
+            "name": "FunctionDefinition",
+            "src": "190:99:1"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "constant": false,
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "etherWithdrawPayment",
+              "payable": false,
+              "scope": 298,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_productId",
+                      "scope": 297,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 289,
+                        "name": "ElementaryTypeName",
+                        "src": "325:7:1"
+                      }
+                    ],
+                    "id": 290,
+                    "name": "VariableDeclaration",
+                    "src": "325:18:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_shopAddress",
+                      "scope": 297,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 291,
+                        "name": "ElementaryTypeName",
+                        "src": "345:7:1"
+                      }
+                    ],
+                    "id": 292,
+                    "name": "VariableDeclaration",
+                    "src": "345:20:1"
+                  }
+                ],
+                "id": 293,
+                "name": "ParameterList",
+                "src": "324:42:1"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "success",
+                      "scope": 297,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 294,
+                        "name": "ElementaryTypeName",
+                        "src": "383:4:1"
+                      }
+                    ],
+                    "id": 295,
+                    "name": "VariableDeclaration",
+                    "src": "383:12:1"
+                  }
+                ],
+                "id": 296,
+                "name": "ParameterList",
+                "src": "382:14:1"
+              }
+            ],
+            "id": 297,
+            "name": "FunctionDefinition",
+            "src": "295:102:1"
+          }
+        ],
+        "id": 298,
+        "name": "ContractDefinition",
+        "src": "54:346:1"
+      }
+    ],
+    "id": 299,
+    "name": "SourceUnit",
+    "src": "0:400:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2018-01-13T21:58:56.623Z"
+}

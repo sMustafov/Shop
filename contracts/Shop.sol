@@ -2,7 +2,6 @@ pragma solidity ^0.4.16;
 
 import "./Owned.sol";
 import "./IShop.sol";
-import "./Order.sol";
 
 contract Shop is Owned, IShop {
 

@@ -9,8 +9,4 @@ contract IOrder {
   event OrderPlaced(uint256 _productId, address _shopAddress, address _from, uint256 _price, OrderStatus _status);
 
   event Withdraw(uint256 _productId, address _shopAddress, address _from);
-  
-  function comfirmOrder(uint256 _productId, address _shopAddress) public returns (bool success);
-
-  function withdrawPayment(uint256 _productId, address _shopAddress) public returns (bool success);
 }

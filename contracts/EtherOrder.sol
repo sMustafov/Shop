@@ -1,9 +1,9 @@
 pragma solidity ^0.4.16;
 
 import "./Shop.sol";
-import "./IOrder.sol";
+import "./IEtherOrder.sol";
 
-contract EtherOrder is IOrder {
+contract EtherOrder is IEtherOrder {
 
   uint256 productPriceInWei;
   uint256 stock;
@@ -11,7 +11,7 @@ contract EtherOrder is IOrder {
   mapping(uint256 => OrderStatus) productStatus;
   mapping(address => uint256) personProduct; // order one product only
   
-  function order(uint256 _productId, address _shopAddress) public payable returns (bool) {
+  function etherOrder(uint256 _productId, address _shopAddress) public payable returns (bool) {
     require(_productId != 0);
     require(productStatus[_productId] == OrderStatus.Confirmed);
     require(personProduct[msg.sender] == 0);
@@ -32,7 +32,7 @@ contract EtherOrder is IOrder {
     return true;
   }
   
-  function comfirmOrder(uint256 _productId, address _shopAddress) public returns (bool) {
+  function etherComfirmOrder(uint256 _productId, address _shopAddress) public returns (bool) {
     Shop shop = Shop(_shopAddress);
     require(msg.sender == shop.getOwner());
     
@@ -47,7 +47,7 @@ contract EtherOrder is IOrder {
     return true;
   }
 
-  function withdrawPayment(uint256 _productId, address _shopAddress) public returns (bool success) {
+  function etherWithdrawPayment(uint256 _productId, address _shopAddress) public returns (bool success) {
     require(_productId != 0);
     require(productStatus[_productId] == OrderStatus.Pending);  
     require(personProduct[msg.sender] != 0);
